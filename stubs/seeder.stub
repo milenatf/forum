@@ -1,17 +1,17 @@
 <?php
 
-namespace Database\Seeders;
+namespace {{ namespace }};
 
-use App\Models\Question;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class QuestionSeeder extends Seeder
+class {{ class }} extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Question::factory(10)->create();
+        //
     }
 }

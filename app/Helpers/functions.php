@@ -1,4 +1,5 @@
 <?php
+
 /** Esse helper deve ser adicionado ao composer.json, para que o composer.json faça a leitura e o laravel entenda que esse nosso arquivo existe
  *
  * Dentro do "autoload" deve ser criada uma nova configuração
@@ -11,10 +12,8 @@
  * $ composer dumpautoload
  *
  * Dessa maneira o laravel vai entender que o arquivo existe de forma globla
- *
 */
-
-if( !function_exists('isEmail') ) {
+if (! function_exists('isEmail')) {
     function isEmail(string $email): bool
     {
         return filter_var($email, FILTER_VALIDATE_EMAIL) !== false;
