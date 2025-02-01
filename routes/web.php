@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use Illuminate\Support\Facades\Route;
@@ -18,7 +19,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('/questions', QuestionController::class);
+
+    Route::post('/forum', [ForumController::class, 'reply'])->name('forum.reply');
 });
 
+Route::get('/forum', [ForumController::class, 'index'])->name('forum.index');
+Route::get('/forum/{question}',[ForumController::class, 'show'])->name('forum.show');
 
 require __DIR__.'/auth.php';
