@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +18,13 @@ class Question extends Model
     protected $fillable = ['user_id', 'category_id', 'text', 'subject', 'text'];
 
     protected $with = ['category'];
+
+    protected function shortText(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => substr($this->text, 0, 100),
+        );
+    }
 
     public function user(): BelongsTo
     {
