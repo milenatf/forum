@@ -7,6 +7,8 @@ use App\Models\Question;
 use App\Models\ReplyQuestion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\QuestionRepliedMail;
 
 class ForumController extends Controller
 {
@@ -39,7 +41,7 @@ class ForumController extends Controller
 
         // QuestionReplied::dispatch($question->user, $createdReply);
 
-        //Mail::to($question->user)->send(new QuestionRepliedMail);
+        Mail::to($question->user)->send(new QuestionRepliedMail);
 
         return redirect()->back()->with('success', 'Pergunta respondida com sucesso!');
     }
