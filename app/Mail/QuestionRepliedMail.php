@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\ReplyQuestion;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -16,7 +17,9 @@ class QuestionRepliedMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(
+        public ReplyQuestion $userRepliedQuestion
+    )
     {
         //
     }
@@ -27,7 +30,7 @@ class QuestionRepliedMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Fulana respondeu sua pergunta',
+            subject: 'A sua pergunta foi respondida',
         );
     }
 

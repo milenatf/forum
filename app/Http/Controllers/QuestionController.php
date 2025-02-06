@@ -66,8 +66,12 @@ class QuestionController extends Controller
      */
     public function update(Request $request, Question $question)
     {
-        $question->update($request->validated());
+        $data = $request->validate([
+            'subject' => 'required|string|max:255',
+            'text' => 'required|string',
+        ]);
 
+        $question->update($data);
 
         return redirect()->route('questions.index')->with('success', 'Pergunta atualizada com sucesso!');
     }

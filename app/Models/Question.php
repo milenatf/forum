@@ -15,7 +15,7 @@ class Question extends Model
     /** @use HasFactory<\Database\Factories\QuestionFactory> */
     use HasFactory, HasUuids, SoftDeletes;
 
-    protected $fillable = ['user_id', 'category_id', 'text', 'subject', 'text'];
+    protected $fillable = ['user_id', 'category_id', 'title', 'subject', 'text'];
 
     protected $with = ['category'];
 

@@ -9,6 +9,7 @@
 		dark:ring-zinc-800 dark:hover:text-white/70 dark:hover:ring-zinc-700
 		dark:focus-visible:ring-[#FF2D20]">
         <div class="pt-3 sm:pt-5">
+            <a href="{{ route('forum.index') }}">Voltar</a>
             <x-flash/>
             <h2 class="text-xl font-semibold text-black dark:text-white">{{ $question->subject }}</h2>
 

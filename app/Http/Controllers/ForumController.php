@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\QuestionReplied;
 use App\Http\Requests\StoreReplyQuestion;
 use App\Models\Question;
 use App\Models\ReplyQuestion;
@@ -39,9 +40,9 @@ class ForumController extends Controller
             ...$request->validated()
         ]);
 
-        // QuestionReplied::dispatch($question->user, $createdReply);
+        QuestionReplied::dispatch($question->user, $createdReply);
 
-        Mail::to($question->user)->send(new QuestionRepliedMail);
+        // Mail::to($question->user)->send(new QuestionRepliedMail);
 
         return redirect()->back()->with('success', 'Pergunta respondida com sucesso!');
     }
