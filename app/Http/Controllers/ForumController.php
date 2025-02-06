@@ -4,12 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Events\QuestionReplied;
 use App\Http\Requests\StoreReplyQuestion;
+use App\Mail\QuestionRepliedMail;
 use App\Models\Question;
 use App\Models\ReplyQuestion;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\QuestionRepliedMail;
 
 class ForumController extends Controller
 {
@@ -22,7 +21,7 @@ class ForumController extends Controller
 
     public function show(string $id)
     {
-        if(! $question = Question::with(['user', 'replies'])->find($id)) {
+        if (! $question = Question::with(['user', 'replies'])->find($id)) {
             abort(404);
         }
 
@@ -31,13 +30,13 @@ class ForumController extends Controller
 
     public function reply(StoreReplyQuestion $request)
     {
-        if(! $question = Question::find($request->question_id)){
+        if (! $question = Question::find($request->question_id)) {
             abort(404);
         }
 
         $createdReply = ReplyQuestion::create([
             'user_id' => Auth::id(),
-            ...$request->validated()
+            ...$request->validated(),
         ]);
 
         QuestionReplied::dispatch($question->user, $createdReply);

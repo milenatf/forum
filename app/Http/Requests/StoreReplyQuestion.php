@@ -26,14 +26,14 @@ class StoreReplyQuestion extends FormRequest
             'question_id' => [
                 'required',
                 'string',
-                Rule::exists('questions','id'),
+                Rule::exists('questions', 'id'),
             ],
             'text' => [
                 'required',
                 'string',
                 'min:5',
                 'max:1000',
-            ]
+            ],
         ];
     }
 }

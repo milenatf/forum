@@ -12,7 +12,7 @@
  * $ composer dumpautoload
  *
  * Dessa maneira o laravel vai entender que o arquivo existe de forma globla
-*/
+ */
 if (! function_exists('isEmail')) {
     function isEmail(string $email): bool
     {
